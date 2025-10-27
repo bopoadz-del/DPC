@@ -1,13 +1,24 @@
+<<<<< codex/setup-streamlit-pendulum-energy-simulator-gceqiw
+"""Streamlit UI for the Pendulum Array investor analysis dashboard."""
+import importlib.util
+import math
+import platform
+=======
 <<<<< codex/setup-streamlit-pendulum-energy-simulator-f0uijq
 =======
     codex/setup-streamlit-pendulum-energy-simulator-awk5ji
 >>>>> main
 """Streamlit UI for the Pendulum Array investor analysis dashboard."""
 import math
+>>>>> main
 from typing import Optional
 
 import numpy as np
 import pandas as pd
+<<<<< codex/setup-streamlit-pendulum-energy-simulator-gceqiw
+import plotly
+=======
+>>>>> main
 import plotly.graph_objects as go
 import streamlit as st
 
@@ -23,6 +34,11 @@ from finance_core import (
     weibull_ev3,
 )
 
+<<<<< codex/setup-streamlit-pendulum-energy-simulator-gceqiw
+KALEIDO_AVAILABLE = importlib.util.find_spec("kaleido") is not None
+
+=======
+>>>>> main
 st.set_page_config(page_title="Pendulum Array — Investor Analysis (Pro)", layout="wide")
 st.title("Pendulum Array — Investor Analysis (Pro)")
 st.caption(
@@ -32,6 +48,12 @@ st.caption(
 
 def render_png_download(label: str, fig: go.Figure, filename: str) -> None:
     """Render a download button for a Plotly figure PNG if kaleido is available."""
+<<<<< codex/setup-streamlit-pendulum-energy-simulator-gceqiw
+    if not KALEIDO_AVAILABLE:
+        st.caption("Install optional 'kaleido' server-side to enable PNG downloads.")
+        return
+=======
+>>>>> main
     try:
         png_bytes = fig.to_image(format="png", scale=2)
     except Exception as err:  # pragma: no cover - UI feedback only
@@ -105,6 +127,17 @@ with st.sidebar:
     base_peak_factor = st.slider("Unsmoothed peak / avg factor", 1.0, 5.0, 2.5, 0.1)
     st.caption("If set > 0, smoothing reduces clipping vs inverter rating.")
 
+<<<<< codex/setup-streamlit-pendulum-energy-simulator-gceqiw
+    with st.expander("Runtime debug"):
+        st.write("Python", platform.python_version())
+        st.write("Streamlit", st.__version__)
+        st.write("Plotly", plotly.__version__)
+        st.write("NumPy", np.__version__)
+        st.write("Pandas", pd.__version__)
+        st.write("Kaleido", "available" if KALEIDO_AVAILABLE else "missing")
+
+=======
+>>>>> main
 # ---------- Core AEP ----------
 if mode == "Weibull (k, c)":
     P_array_W = expected_power_weibull(rho, A_array, Cp, chain_eff, availability, k, c)
@@ -181,7 +214,10 @@ colS2.metric("Module avg power", f"{P_module_kW:.2f} kW")
 colS3.metric("Smoothing index", f"{smoothing_index:.2f}")
 colS4.metric("Modules count", f"{modules_count}")
 
+<<<<< codex/setup-streamlit-pendulum-energy-simulator-gceqiw
+=======
 <<<<< codex/setup-streamlit-pendulum-energy-simulator-f0uijq
+>>>>> main
 total_arrays = M * max(modules_count, 1)
 site_avg_power_kw = (P_array_W * total_arrays) / 1000.0
 site_energy_mwh = (E_array_kwh * total_arrays) / 1000.0
@@ -198,7 +234,10 @@ st.caption(
     f"Estimated land footprint: {site_land_m2:,.0f} m² (spacing factor × swept area)."
 )
 
+<<<<< codex/setup-streamlit-pendulum-energy-simulator-gceqiw
 =======
+=======
+>>>>> main
 >>>>> main
 if curtailment_note:
     st.info(curtailment_note)
@@ -335,6 +374,8 @@ render_png_download("Download Arrays Bar (PNG)", fig_bar, "arrays_needed.png")
 st.caption(
     "Smoothing reduces ripple and clipping but does not create energy. Energy still scales with 0.5·ρ·A·E[v³]·Cp·eff·availability."
 )
+<<<<< codex/setup-streamlit-pendulum-energy-simulator-gceqiw
+=======
 <<<<< codex/setup-streamlit-pendulum-energy-simulator-f0uijq
 =======
 =======
@@ -494,4 +535,5 @@ if do_plot:
 
 st.caption("Tip: Tune Jf↑ / bc↑ for smoother RPM; match Ke/Rs/Vdc to your alternator; increase A_pend or wind for higher power. Physics invoices everyone.")
           main
+>>>>> main
 >>>>> main
