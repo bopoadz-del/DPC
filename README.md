@@ -1,8 +1,16 @@
-     codex/setup-streamlit-pendulum-energy-simulator-awk5ji
+   codex/setup-streamlit-pendulum-energy-simulator-f0uijq
+=======
+     codex/setup-streamlit-pendulum-energy-simulator-awk5ji 
+     main
 # Pendulum Array Investor Analysis (Streamlit)
 
 Streamlit dashboard for bankability analysis of pendulum-array wind harvesters:
 - Weibull and histogram wind models with automatic AEP calculation
+     codex/setup-streamlit-pendulum-energy-simulator-f0uijq
+- Module phase-offset smoothing, whole-site rollups, and optional curtailment relief modelling
+- CapEx waterfall, LCOE sensitivity table, and scenario sizing toolkit
+- CSV/PNG export buttons so investors can pull artefacts directly from the UI
+=======
 - Module phase-offset smoothing and optional curtailment relief modelling
 - CapEx waterfall, LCOE sensitivity table, and scenario sizing toolkit
 - CSV/PNG export buttons so investors can pull artefacts directly from the UI
@@ -15,6 +23,7 @@ Physics-bounded (Betz limit), supports generator models:
 - MPPT (resistive proxy)
 - **LUT** (measured curves, 1D/2D/3D over ω × Vdc × temp)
       main
+       main
 
 ## Quickstart
 
@@ -22,6 +31,8 @@ Physics-bounded (Betz limit), supports generator models:
 git clone https://github.com/<your-org>/pendulum-energy-sim.git
 cd pendulum-energy-sim
 python -m venv .venv && source .venv/bin/activate  # (Windows: .venv\Scripts\activate)
+   codex/setup-streamlit-pendulum-energy-simulator-f0uijq
+=======
     codex/setup-streamlit-pendulum-energy-simulator-awk5ji
 =======
       codex/setup-streamlit-pendulum-energy-simulator-0gncjv
@@ -32,11 +43,15 @@ pip install --upgrade pip
 main
           main
        main
+    main
 pip install -r requirements.txt
 streamlit run app.py
 ```
 
+ codex/setup-streamlit-pendulum-energy-simulator-f0uijq
+=======
   codex/setup-streamlit-pendulum-energy-simulator-awk5ji
+   main
 Open Streamlit’s URL (default [http://localhost:8501](http://localhost:8501)).
 
 ## Usage highlights
@@ -47,6 +62,10 @@ Open Streamlit’s URL (default [http://localhost:8501](http://localhost:8501)).
 4. **Phase offsets & curtailment** – explore smoothing index vs. inverter clipping.
 5. **Finance outputs** – LCOE table (Weibull presets) plus investor scenarios with land/CapEx rollups.
 6. **Exports** – PNG download buttons for Plotly figures and CSV exports for tables.
+<<<<< codex/setup-streamlit-pendulum-energy-simulator-f0uijq
+7. **Whole-site metrics** – enter modules/arrays to get consolidated CapEx, energy, and land footprint numbers.
+=======
+>>>>> main
 
 ## Render deployment & debugging
 
@@ -70,6 +89,8 @@ finance_core.py   # Energy + finance helper functions
 render.yaml       # Render web service definition
 requirements.txt  # Pinned Streamlit + Plotly stack
 ```
+<<<<< codex/setup-streamlit-pendulum-energy-simulator-f0uijq
+=======
 =======
 Open the URL Streamlit prints (usually [http://localhost:8501](http://localhost:8501)).
 
@@ -130,6 +151,7 @@ Render caches wheels between deploys. When you bump dependency pins you may need
       main
 * **HF Spaces**: deploy with the same command; add a `requirements.txt`.     main
     main
+>>>>> main
 
 ## License
 

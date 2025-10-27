@@ -1,4 +1,7 @@
+<<<<< codex/setup-streamlit-pendulum-energy-simulator-f0uijq
+=======
     codex/setup-streamlit-pendulum-energy-simulator-awk5ji
+>>>>> main
 """Streamlit UI for the Pendulum Array investor analysis dashboard."""
 import math
 from typing import Optional
@@ -178,6 +181,25 @@ colS2.metric("Module avg power", f"{P_module_kW:.2f} kW")
 colS3.metric("Smoothing index", f"{smoothing_index:.2f}")
 colS4.metric("Modules count", f"{modules_count}")
 
+<<<<< codex/setup-streamlit-pendulum-energy-simulator-f0uijq
+total_arrays = M * max(modules_count, 1)
+site_avg_power_kw = (P_array_W * total_arrays) / 1000.0
+site_energy_mwh = (E_array_kwh * total_arrays) / 1000.0
+site_capex = capex_array * total_arrays
+site_land_m2 = total_arrays * A_array * spacing_factor
+
+colSite1, colSite2, colSite3, colSite4 = st.columns(4)
+colSite1.metric("Total arrays", f"{total_arrays}")
+colSite2.metric("Site avg power", f"{site_avg_power_kw:.1f} kW")
+colSite3.metric("Site annual energy", f"{site_energy_mwh:.1f} MWh")
+colSite4.metric("Site CapEx", f"${site_capex:,.0f}")
+
+st.caption(
+    f"Estimated land footprint: {site_land_m2:,.0f} m² (spacing factor × swept area)."
+)
+
+=======
+>>>>> main
 if curtailment_note:
     st.info(curtailment_note)
 
@@ -313,6 +335,8 @@ render_png_download("Download Arrays Bar (PNG)", fig_bar, "arrays_needed.png")
 st.caption(
     "Smoothing reduces ripple and clipping but does not create energy. Energy still scales with 0.5·ρ·A·E[v³]·Cp·eff·availability."
 )
+<<<<< codex/setup-streamlit-pendulum-energy-simulator-f0uijq
+=======
 =======
 # app.py
 import io
@@ -470,3 +494,4 @@ if do_plot:
 
 st.caption("Tip: Tune Jf↑ / bc↑ for smoother RPM; match Ke/Rs/Vdc to your alternator; increase A_pend or wind for higher power. Physics invoices everyone.")
           main
+>>>>> main
