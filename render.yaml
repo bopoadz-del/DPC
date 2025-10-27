@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: pendulum-array-investor
+    env: python
+    plan: free
+    buildCommand: python scripts/preflight.py && pip install --no-cache-dir -r requirements.txt
+    startCommand: streamlit run app.py --server.port $PORT --server.address 0.0.0.0
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11
