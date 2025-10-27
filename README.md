@@ -1,3 +1,12 @@
+     codex/setup-streamlit-pendulum-energy-simulator-awk5ji
+# Pendulum Array Investor Analysis (Streamlit)
+
+Streamlit dashboard for bankability analysis of pendulum-array wind harvesters:
+- Weibull and histogram wind models with automatic AEP calculation
+- Module phase-offset smoothing and optional curtailment relief modelling
+- CapEx waterfall, LCOE sensitivity table, and scenario sizing toolkit
+- CSV/PNG export buttons so investors can pull artefacts directly from the UI
+=======
 # Pendulum Array Energy Simulator (Streamlit)
 
 Chaotic double pendulums → one-way clutches → common shaft → flywheel → generator.
@@ -5,6 +14,7 @@ Physics-bounded (Betz limit), supports generator models:
 - Fixed DC bus (diode bridge)
 - MPPT (resistive proxy)
 - **LUT** (measured curves, 1D/2D/3D over ω × Vdc × temp)
+      main
 
 ## Quickstart
 
@@ -12,6 +22,8 @@ Physics-bounded (Betz limit), supports generator models:
 git clone https://github.com/<your-org>/pendulum-energy-sim.git
 cd pendulum-energy-sim
 python -m venv .venv && source .venv/bin/activate  # (Windows: .venv\Scripts\activate)
+    codex/setup-streamlit-pendulum-energy-simulator-awk5ji
+=======
       codex/setup-streamlit-pendulum-energy-simulator-0gncjv
 =======
 codex/setup-streamlit-pendulum-energy-simulator-kxmbq0
@@ -19,10 +31,46 @@ pip install --upgrade pip
 
 main
           main
+       main
 pip install -r requirements.txt
 streamlit run app.py
 ```
 
+  codex/setup-streamlit-pendulum-energy-simulator-awk5ji
+Open Streamlit’s URL (default [http://localhost:8501](http://localhost:8501)).
+
+## Usage highlights
+
+1. **Physics inputs** – set swept area, Cp, drivetrain efficiency, availability.
+2. **Wind resource** – pick Weibull *(k, c)* or upload a histogram CSV (`speed_mps`, `count`/`prob`).
+3. **CapEx** – break out mechanical, electrical, civil/BOS, soft costs, and contingency.
+4. **Phase offsets & curtailment** – explore smoothing index vs. inverter clipping.
+5. **Finance outputs** – LCOE table (Weibull presets) plus investor scenarios with land/CapEx rollups.
+6. **Exports** – PNG download buttons for Plotly figures and CSV exports for tables.
+
+## Render deployment & debugging
+
+Render is configured via `render.yaml`:
+
+- **Build** – `pip install --no-cache-dir -r requirements.txt`
+- **Runtime** – `streamlit run app.py --server.port $PORT --server.address 0.0.0.0`
+- **Python** – 3.11 (set with `PYTHON_VERSION` env var)
+
+If a Render deploy fails:
+
+1. Retry the deploy with **Clear build cache** – cached wheels occasionally clash with new pins.
+2. Re-run `pip install --no-cache-dir -r requirements.txt` locally inside a clean virtualenv to reproduce resolver errors.
+3. Once the install succeeds, commit the fixes and push. Render rebuilds automatically with the cached layer reset.
+
+## Repository layout
+
+```
+app.py            # Streamlit UI
+finance_core.py   # Energy + finance helper functions
+render.yaml       # Render web service definition
+requirements.txt  # Pinned Streamlit + Plotly stack
+```
+=======
 Open the URL Streamlit prints (usually [http://localhost:8501](http://localhost:8501)).
 
 ## Usage
@@ -81,6 +129,7 @@ Render caches wheels between deploys. When you bump dependency pins you may need
 * **Render**: connect the repo and Render will pick up `render.yaml` to provision a Python web service.
       main
 * **HF Spaces**: deploy with the same command; add a `requirements.txt`.     main
+    main
 
 ## License
 
