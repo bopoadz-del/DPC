@@ -12,6 +12,10 @@ Physics-bounded (Betz limit), supports generator models:
 git clone https://github.com/<your-org>/pendulum-energy-sim.git
 cd pendulum-energy-sim
 python -m venv .venv && source .venv/bin/activate  # (Windows: .venv\Scripts\activate)
+codex/setup-streamlit-pendulum-energy-simulator-kxmbq0
+pip install --upgrade pip
+
+main
 pip install -r requirements.txt
 streamlit run app.py
 ```
@@ -55,7 +59,11 @@ Columns:
 
 * **Local**: `streamlit run app.py`
 * **Replit**: import repo, set `run = "streamlit run app.py"` in Replit’s config.
+ codex/setup-streamlit-pendulum-energy-simulator-kxmbq0
+* **Render**: connect the repo and Render will pick up `render.yaml` to provision a Python web service. The build step upgrades `pip` before installing the pinned dependencies (Streamlit stack + SciPy) to avoid resolver regressions. Check the Render deploy logs if you need to debug installation issues.
+
 * **Render**: connect the repo and Render will pick up `render.yaml` to provision a Python web service.
+  main
 * **HF Spaces**: deploy with the same command; add a `requirements.txt`.
 
 ## License

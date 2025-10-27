@@ -3,3 +3,9 @@ numpy==1.26.4
 scipy==1.13.1
 pandas==2.2.2
 matplotlib==3.8.4
+codex/setup-streamlit-pendulum-energy-simulator-kxmbq0
+rich==13.7.1
+markdown-it-py==3.0.0
+pygments==2.18.0
+======= 
+ main
