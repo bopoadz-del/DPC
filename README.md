@@ -12,10 +12,13 @@ Physics-bounded (Betz limit), supports generator models:
 git clone https://github.com/<your-org>/pendulum-energy-sim.git
 cd pendulum-energy-sim
 python -m venv .venv && source .venv/bin/activate  # (Windows: .venv\Scripts\activate)
+      codex/setup-streamlit-pendulum-energy-simulator-0gncjv
+=======
 codex/setup-streamlit-pendulum-energy-simulator-kxmbq0
 pip install --upgrade pip
 
 main
+          main
 pip install -r requirements.txt
 streamlit run app.py
 ```
@@ -59,12 +62,25 @@ Columns:
 
 * **Local**: `streamlit run app.py`
 * **Replit**: import repo, set `run = "streamlit run app.py"` in Replit’s config.
+    codex/setup-streamlit-pendulum-energy-simulator-0gncjv
+* **Render**: connect the repo and Render will pick up `render.yaml` to provision a Python web service. The build step installs the pinned dependencies with `pip install --no-cache-dir -r requirements.txt` so it works with cached layers. If a build fails, re-run the deploy with “Clear build cache” and inspect the pip output in Render’s deploy logs to spot missing wheels.
+* **HF Spaces**: deploy with the same command; add a `requirements.txt`.
+
+## Debugging Render builds
+
+Render caches wheels between deploys. When you bump dependency pins you may need to clear the build cache and redeploy. The easiest loop is:
+
+1. Open the failed deploy, click **Retry** → **Clear build cache**.
+2. If the install still fails, copy the offending `pip` command from the logs and run it locally inside a clean virtualenv. That exposes
+   missing system libraries or typos before you push again.
+3. Once `pip install -r requirements.txt` succeeds locally, commit the updated pins and retry the Render deploy.
+=======
  codex/setup-streamlit-pendulum-energy-simulator-kxmbq0
 * **Render**: connect the repo and Render will pick up `render.yaml` to provision a Python web service. The build step upgrades `pip` before installing the pinned dependencies (Streamlit stack + SciPy) to avoid resolver regressions. Check the Render deploy logs if you need to debug installation issues.
 
 * **Render**: connect the repo and Render will pick up `render.yaml` to provision a Python web service.
-  main
-* **HF Spaces**: deploy with the same command; add a `requirements.txt`.
+      main
+* **HF Spaces**: deploy with the same command; add a `requirements.txt`.     main
 
 ## License
 
