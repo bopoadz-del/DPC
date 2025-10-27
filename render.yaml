@@ -1,9 +1,24 @@
 services:
   - type: web
+<<< codex/setup-streamlit-pendulum-energy-simulator-awk5ji
     name: pendulum-array-investor
     env: python
     plan: free
     buildCommand: pip install --no-cache-dir -r requirements.txt
+=======
+    name: pendulum-energy-sim
+    env: python
+    plan: free
+    codex/setup-streamlit-pendulum-energy-simulator-0gncjv
+    buildCommand: pip install --no-cache-dir -r requirements.txt
+=======
+  codex/setup-streamlit-pendulum-energy-simulator-kxmbq0
+    buildCommand: pip install --upgrade pip && pip install -r requirements.txt
+ 
+    buildCommand: pip install -r requirements.txt
+  main
+        main
+            main
     startCommand: streamlit run app.py --server.port $PORT --server.address 0.0.0.0
     envVars:
       - key: PYTHON_VERSION
