@@ -1,5 +1,11 @@
 services:
   - type: web
+<<<<<< codex/setup-streamlit-pendulum-energy-simulator-ekvz32
+    name: pendulum-array-investor
+    env: python
+    plan: free
+    buildCommand: python scripts/preflight.py && pip install --no-cache-dir -r requirements.txt
+=======
 <<<<<< codex/setup-streamlit-pendulum-energy-simulator-xb65fd
 =======
 <<<<< codex/setup-streamlit-pendulum-energy-simulator-gceqiw
@@ -36,6 +42,7 @@ services:
             main
 >>>>> main
 >>>>> main
+>>>>>> main
 >>>>>> main
     startCommand: streamlit run app.py --server.port $PORT --server.address 0.0.0.0
     envVars:

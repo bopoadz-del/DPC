@@ -1,14 +1,19 @@
 # Pendulum Array Investor Analysis (Streamlit)
 
 Streamlit dashboard for bankability analysis of pendulum-array wind harvesters:
+<<<<<< codex/setup-streamlit-pendulum-energy-simulator-ekvz32
+=======
 <<<<<< codex/setup-streamlit-pendulum-energy-simulator-xb65fd
 =======
 <<<<< codex/setup-streamlit-pendulum-energy-simulator-gceqiw
+>>>>>> main
 >>>>>> main
 - Weibull and histogram wind models with automatic AEP calculation
 - Module phase-offset smoothing, whole-site rollups, and optional curtailment relief modelling
 - CapEx waterfall, LCOE sensitivity table, and scenario sizing toolkit
 - CSV exports are built-in; add `kaleido` if you want server-side PNG downloads for Plotly charts
+<<<<<< codex/setup-streamlit-pendulum-energy-simulator-ekvz32
+=======
 <<<<<< codex/setup-streamlit-pendulum-energy-simulator-xb65fd
 =======
 =======
@@ -19,10 +24,16 @@ Streamlit dashboard for bankability analysis of pendulum-array wind harvesters:
 - CSV/PNG export buttons so investors can pull artefacts directly from the UI
 >>>>> main
 >>>>>> main
+>>>>>> main
 
 ## Quickstart
 
 ```bash
+<<<<<< codex/setup-streamlit-pendulum-energy-simulator-ekvz32
+git clone https://github.com/<your-org>/dpc.git
+cd dpc
+python -m venv .venv && source .venv/bin/activate  # (Windows: .venv\Scripts\activate)
+=======
 <<<<<< codex/setup-streamlit-pendulum-energy-simulator-xb65fd
 git clone https://github.com/<your-org>/dpc.git
 cd dpc
@@ -38,6 +49,7 @@ cd DPC
 python -m venv .venv && source .venv/bin/activate  # (Windows: .venv\\Scripts\\activate)
 pip install --upgrade pip
 >>>>> main
+>>>>>> main
 >>>>>> main
 pip install -r requirements.txt
 streamlit run app.py
@@ -59,6 +71,14 @@ Open Streamlit’s URL (default [http://localhost:8501](http://localhost:8501)).
 
 Render is configured via `render.yaml`:
 
+<<<<=<<< codex/setup-streamlit-pendulum-energy-simulator-ekvz32
+- **Build** – `python scripts/preflight.py && pip install --no-cache-dir -r requirements.txt`
+- **Runtime** – `streamlit run app.py --server.port $PORT --server.address 0.0.0.0`
+- **Python** – 3.11 (set with `PYTHON_VERSION` env var)
+
+The preflight step blocks deployments if merge markers (for example, the git conflict delimiters) ever slip into requirements.txt,
+providing a clearer error than pip's parser on Render.
+=======
 - **Build** – `pip install --no-cache-dir -r requirements.txt`
 - **Runtime** – `streamlit run app.py --server.port $PORT --server.address 0.0.0.0`
 - **Python** – 3.11 (set with `PYTHON_VERSION` env var)
@@ -67,19 +87,30 @@ Render is configured via `render.yaml`:
 =======
 <<<<< codex/setup-streamlit-pendulum-energy-simulator-gceqiw
 >>>>>> main
+>>>>>> main
 Optional PNG downloads depend on [Plotly Kaleido](https://github.com/plotly/Kaleido). To enable them on Render, add
 `kaleido` to `requirements.txt` or install it via the Render shell. Without it, the app displays a notice and keeps
 running normally.
 
+<<<<<< codex/setup-streamlit-pendulum-energy-simulator-ekvz32
+=======
 <<<<<< codex/setup-streamlit-pendulum-energy-simulator-xb65fd
 =======
 =======
 >>>>> main
 >>>>>> main
+>>>>>> main
 If a Render deploy fails:
 
 1. Retry the deploy with **Clear build cache** – cached wheels occasionally clash with new pins.
 2. Re-run `pip install --no-cache-dir -r requirements.txt` locally inside a clean virtualenv to reproduce resolver errors.
+<<<<<< codex/setup-streamlit-pendulum-energy-simulator-ekvz32
+3. Once the install succeeds, commit the fixes and push. Render rebuilds automatically with the cached layer reset.
+
+The sidebar **Runtime debug** panel surfaces Python, Streamlit, Plotly, NumPy, Pandas, and Kaleido status so you can
+confirm versions directly on the deployed app.
+
+=======
 <<<<<< codex/setup-streamlit-pendulum-energy-simulator-xb65fd
 3. If pip reports an error mentioning `<<<<<`/`>>>>>`, your `requirements.txt` still contains merge markers; remove them and re-run the install.
 4. Once the install succeeds, commit the fixes and push. Render rebuilds automatically with the cached layer reset.
@@ -97,6 +128,7 @@ confirm versions directly on the deployed app.
 =======
 >>>>> main
 >>>>>> main
+>>>>>> main
 ## Repository layout
 
 ```
@@ -104,6 +136,11 @@ app.py            # Streamlit UI
 finance_core.py   # Energy + finance helper functions
 render.yaml       # Render web service definition
 requirements.txt  # Pinned Streamlit + Plotly stack
+<<<<<< codex/setup-streamlit-pendulum-energy-simulator-ekvz32
+scripts/preflight.py  # Merge-marker guard used during Render builds
+```
+
+=======
 ```
 
 <<<<<< codex/setup-streamlit-pendulum-energy-simulator-xb65fd
@@ -157,6 +194,7 @@ Render caches wheels between deploys. When you bump dependency pins you may need
 
 >>>>> main
 >>>>>=>> main
+>>>>>> main
 ## License
 
 MIT
