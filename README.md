@@ -44,7 +44,8 @@ If a Render deploy fails:
 
 1. Retry the deploy with **Clear build cache** – cached wheels occasionally clash with new pins.
 2. Re-run `pip install --no-cache-dir -r requirements.txt` locally inside a clean virtualenv to reproduce resolver errors.
-3. Once the install succeeds, commit the fixes and push. Render rebuilds automatically with the cached layer reset.
+3. If pip reports an error mentioning `<<<<<`/`>>>>>`, your `requirements.txt` still contains merge markers; remove them and re-run the install.
+4. Once the install succeeds, commit the fixes and push. Render rebuilds automatically with the cached layer reset.
 
 The sidebar **Runtime debug** panel surfaces Python, Streamlit, Plotly, NumPy, Pandas, and Kaleido status so you can
 confirm versions directly on the deployed app.
