@@ -1,0 +1,9 @@
+streamlit==1.39.0
+numpy==1.26.4
+scipy==1.13.1
+pandas==2.2.2
+matplotlib==3.8.4
+rich==14.2.0
+markdown-it-py==4.0.0
+mdurl==0.1.2
+pygments==2.19.2
