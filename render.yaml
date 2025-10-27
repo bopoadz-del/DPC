@@ -1,5 +1,7 @@
 services:
   - type: web
+<<<<<< codex/setup-streamlit-pendulum-energy-simulator-xb65fd
+=======
 <<<<< codex/setup-streamlit-pendulum-energy-simulator-gceqiw
 =======
 <<<<< codex/setup-streamlit-pendulum-energy-simulator-f0uijq
@@ -7,10 +9,13 @@ services:
 <<< codex/setup-streamlit-pendulum-energy-simulator-awk5ji
 >>>>> main
 >>>>> main
+>>>>>> main
     name: pendulum-array-investor
     env: python
     plan: free
     buildCommand: pip install --no-cache-dir -r requirements.txt
+<<<<<< codex/setup-streamlit-pendulum-energy-simulator-xb65fd
+=======
 <<<<< codex/setup-streamlit-pendulum-energy-simulator-gceqiw
 =======
 <<<<< codex/setup-streamlit-pendulum-energy-simulator-f0uijq
@@ -31,6 +36,7 @@ services:
             main
 >>>>> main
 >>>>> main
+>>>>>> main
     startCommand: streamlit run app.py --server.port $PORT --server.address 0.0.0.0
     envVars:
       - key: PYTHON_VERSION

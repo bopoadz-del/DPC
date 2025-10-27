@@ -1,11 +1,16 @@
 # Pendulum Array Investor Analysis (Streamlit)
 
 Streamlit dashboard for bankability analysis of pendulum-array wind harvesters:
+<<<<<< codex/setup-streamlit-pendulum-energy-simulator-xb65fd
+=======
 <<<<< codex/setup-streamlit-pendulum-energy-simulator-gceqiw
+>>>>>> main
 - Weibull and histogram wind models with automatic AEP calculation
 - Module phase-offset smoothing, whole-site rollups, and optional curtailment relief modelling
 - CapEx waterfall, LCOE sensitivity table, and scenario sizing toolkit
 - CSV exports are built-in; add `kaleido` if you want server-side PNG downloads for Plotly charts
+<<<<<< codex/setup-streamlit-pendulum-energy-simulator-xb65fd
+=======
 =======
 
 - Weibull and histogram wind models with automatic AEP calculation
@@ -13,10 +18,16 @@ Streamlit dashboard for bankability analysis of pendulum-array wind harvesters:
 - CapEx waterfall, LCOE sensitivity table, and scenario sizing toolkit
 - CSV/PNG export buttons so investors can pull artefacts directly from the UI
 >>>>> main
+>>>>>> main
 
 ## Quickstart
 
 ```bash
+<<<<<< codex/setup-streamlit-pendulum-energy-simulator-xb65fd
+git clone https://github.com/<your-org>/dpc.git
+cd dpc
+python -m venv .venv && source .venv/bin/activate  # (Windows: .venv\Scripts\activate)
+=======
 <<<<<< codex/setup-streamlit-pendulum-energy-simulator-gceqiw
 git clone https://github.com/<your-org>/pendulum-energy-sim.git
 cd pendulum-energy-sim
@@ -27,6 +38,7 @@ cd DPC
 python -m venv .venv && source .venv/bin/activate  # (Windows: .venv\\Scripts\\activate)
 pip install --upgrade pip
 >>>>> main
+>>>>>> main
 pip install -r requirements.txt
 streamlit run app.py
 ```
@@ -51,17 +63,31 @@ Render is configured via `render.yaml`:
 - **Runtime** – `streamlit run app.py --server.port $PORT --server.address 0.0.0.0`
 - **Python** – 3.11 (set with `PYTHON_VERSION` env var)
 
+<<<<=<<< codex/setup-streamlit-pendulum-energy-simulator-xb65fd
+=======
 <<<<< codex/setup-streamlit-pendulum-energy-simulator-gceqiw
+>>>>>> main
 Optional PNG downloads depend on [Plotly Kaleido](https://github.com/plotly/Kaleido). To enable them on Render, add
 `kaleido` to `requirements.txt` or install it via the Render shell. Without it, the app displays a notice and keeps
 running normally.
 
+<<<<<< codex/setup-streamlit-pendulum-energy-simulator-xb65fd
+=======
 =======
 >>>>> main
+>>>>>> main
 If a Render deploy fails:
 
 1. Retry the deploy with **Clear build cache** – cached wheels occasionally clash with new pins.
 2. Re-run `pip install --no-cache-dir -r requirements.txt` locally inside a clean virtualenv to reproduce resolver errors.
+<<<<<< codex/setup-streamlit-pendulum-energy-simulator-xb65fd
+3. If pip reports an error mentioning `<<<<<`/`>>>>>`, your `requirements.txt` still contains merge markers; remove them and re-run the install.
+4. Once the install succeeds, commit the fixes and push. Render rebuilds automatically with the cached layer reset.
+
+The sidebar **Runtime debug** panel surfaces Python, Streamlit, Plotly, NumPy, Pandas, and Kaleido status so you can
+confirm versions directly on the deployed app.
+
+=======
 3. Once the install succeeds, commit the fixes and push. Render rebuilds automatically with the cached layer reset.
 
 <<<<< codex/setup-streamlit-pendulum-energy-simulator-gceqiw
@@ -70,6 +96,7 @@ confirm versions directly on the deployed app.
 
 =======
 >>>>> main
+>>>>>> main
 ## Repository layout
 
 ```
@@ -79,6 +106,8 @@ render.yaml       # Render web service definition
 requirements.txt  # Pinned Streamlit + Plotly stack
 ```
 
+<<<<<< codex/setup-streamlit-pendulum-energy-simulator-xb65fd
+=======
 <<<<< codex/setup-streamlit-pendulum-energy-simulator-gceqiw
 =======
 ## Usage
@@ -127,6 +156,7 @@ Render caches wheels between deploys. When you bump dependency pins you may need
 3. Once `pip install -r requirements.txt` succeeds locally, commit the updated pins and retry the Render deploy.
 
 >>>>> main
+>>>>>=>> main
 ## License
 
 MIT
