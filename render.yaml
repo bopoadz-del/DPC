@@ -1,49 +1,9 @@
 services:
   - type: web
-<<<<<< codex/setup-streamlit-pendulum-energy-simulator-ekvz32
     name: pendulum-array-investor
     env: python
     plan: free
     buildCommand: python scripts/preflight.py && pip install --no-cache-dir -r requirements.txt
-=======
-<<<<<< codex/setup-streamlit-pendulum-energy-simulator-xb65fd
-=======
-<<<<< codex/setup-streamlit-pendulum-energy-simulator-gceqiw
-=======
-<<<<< codex/setup-streamlit-pendulum-energy-simulator-f0uijq
-=======
-<<< codex/setup-streamlit-pendulum-energy-simulator-awk5ji
->>>>> main
->>>>> main
->>>>>> main
-    name: pendulum-array-investor
-    env: python
-    plan: free
-    buildCommand: pip install --no-cache-dir -r requirements.txt
-<<<<<< codex/setup-streamlit-pendulum-energy-simulator-xb65fd
-=======
-<<<<< codex/setup-streamlit-pendulum-energy-simulator-gceqiw
-=======
-<<<<< codex/setup-streamlit-pendulum-energy-simulator-f0uijq
-=======
-=======
-    name: pendulum-energy-sim
-    env: python
-    plan: free
-    codex/setup-streamlit-pendulum-energy-simulator-0gncjv
-    buildCommand: pip install --no-cache-dir -r requirements.txt
-=======
-  codex/setup-streamlit-pendulum-energy-simulator-kxmbq0
-    buildCommand: pip install --upgrade pip && pip install -r requirements.txt
- 
-    buildCommand: pip install -r requirements.txt
-  main
-        main
-            main
->>>>> main
->>>>> main
->>>>>> main
->>>>>> main
     startCommand: streamlit run app.py --server.port $PORT --server.address 0.0.0.0
     envVars:
       - key: PYTHON_VERSION
