@@ -400,20 +400,20 @@ with tab2:
         else:
             # Custom parameter controls
             with st.expander("⚙️ Geometry", expanded=True):
-                custom_L1 = st.slider("Upper arm length (m)", 0.5, 10.0, config.L1, 0.1)
-                custom_L2 = st.slider("Lower arm length (m)", 0.5, 10.0, config.L2, 0.1)
-                custom_vane_w = st.slider("Vane width (m)", 0.2, 5.0, config.vane_width, 0.1)
-                custom_vane_h = st.slider("Vane height (m)", 0.5, 10.0, config.vane_height, 0.1)
+                custom_L1 = st.slider("Upper arm length (m)", 0.5, 20.0, config.L1, 0.1)
+                custom_L2 = st.slider("Lower arm length (m)", 0.5, 20.0, config.L2, 0.1)
+                custom_vane_w = st.slider("Vane width (m)", 0.2, 10.0, config.vane_width, 0.1)
+                custom_vane_h = st.slider("Vane height (m)", 0.5, 20.0, config.vane_height, 0.1)
 
             with st.expander("⚖️ Masses", expanded=False):
-                custom_m_upper = st.number_input("Upper arm mass (kg)", 0.1, 100.0, config.m_upper_arm, 0.5)
-                custom_m_middle = st.number_input("Middle mass (kg)", 1.0, 200.0, config.m_middle, 1.0)
-                custom_m_lower = st.number_input("Lower arm mass (kg)", 0.1, 100.0, config.m_lower_arm, 0.5)
-                custom_m_tip = st.number_input("Tip mass (kg)", 0.1, 100.0, config.m_tip, 0.5)
+                custom_m_upper = st.number_input("Upper arm mass (kg)", 0.1, 500.0, config.m_upper_arm, 0.5)
+                custom_m_middle = st.number_input("Middle mass (kg)", 1.0, 1000.0, config.m_middle, 1.0)
+                custom_m_lower = st.number_input("Lower arm mass (kg)", 0.1, 500.0, config.m_lower_arm, 0.5)
+                custom_m_tip = st.number_input("Tip mass (kg)", 0.1, 500.0, config.m_tip, 0.5)
 
             with st.expander("📦 Container", expanded=False):
-                custom_cont_w = st.slider("Container width (m)", 1.0, 15.0, config.container_width, 0.1)
-                custom_cont_h = st.slider("Container height (m)", 1.0, 20.0, config.container_height, 0.5)
+                custom_cont_w = st.slider("Container width (m)", 1.0, 30.0, config.container_width, 0.1)
+                custom_cont_h = st.slider("Container height (m)", 1.0, 40.0, config.container_height, 0.5)
                 custom_max_angle = st.slider("Max swing angle (°)", 30, 90, int(np.rad2deg(config.max_swing_angle)), 5)
 
             # Create custom config
