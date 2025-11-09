@@ -1,10 +1,41 @@
 services:
   - type: web
-    name: pendulum-array-investor
+    name: pendulum-array-analysis
     env: python
-    plan: free
+    plan: free  # Upgrade to 'starter' for always-on and better performance
+    region: oregon  # Choose region closest to users (oregon, frankfurt, singapore)
+
+    # Build configuration
     buildCommand: python scripts/preflight.py && pip install --no-cache-dir -r requirements.txt
-    startCommand: streamlit run app.py --server.port $PORT --server.address 0.0.0.0
+
+    # Start command with optimized Streamlit settings
+    startCommand: >
+      streamlit run app.py
+      --server.port=$PORT
+      --server.address=0.0.0.0
+      --server.headless=true
+      --server.enableCORS=false
+      --server.enableXsrfProtection=true
+      --browser.gatherUsageStats=false
+      --theme.base=light
+
+    # Environment variables
     envVars:
       - key: PYTHON_VERSION
-        value: 3.11
+        value: "3.11"
+      - key: STREAMLIT_SERVER_MAX_UPLOAD_SIZE
+        value: "200"  # MB
+      - key: STREAMLIT_SERVER_ENABLE_STATIC_SERVING
+        value: "true"
+      - key: PYTHONUNBUFFERED
+        value: "1"  # Better logging
+
+    # Health check endpoint
+    healthCheckPath: /_stcore/health
+
+    # Auto-deploy settings
+    autoDeploy: true  # Auto-deploy on git push
+
+    # Scaling (only on paid plans)
+    # numInstances: 1
+    # maxInstances: 3
