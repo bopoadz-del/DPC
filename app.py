@@ -386,13 +386,53 @@ with tab2:
         )
         config = SCENARIOS[scenario_key]
 
-        st.info(f"""
-        **{config.name}**
-        - Pendulums: {config.num_pendulums}
-        - Arm length: {config.L1} m
-        - Middle mass: {config.m_middle} kg
-        - Expected @ 6 m/s: {config.expected_power_6ms:.2f} kW
-        """)
+        # Custom configuration option
+        use_custom = st.checkbox("🔧 Customize Parameters", value=False)
+
+        if not use_custom:
+            st.info(f"""
+            **{config.name}**
+            - Pendulums: {config.num_pendulums}
+            - Arm length: {config.L1} m
+            - Middle mass: {config.m_middle} kg
+            - Expected @ 6 m/s: {config.expected_power_6ms:.2f} kW
+            """)
+        else:
+            # Custom parameter controls
+            with st.expander("⚙️ Geometry", expanded=True):
+                custom_L1 = st.slider("Upper arm length (m)", 0.5, 10.0, config.L1, 0.1)
+                custom_L2 = st.slider("Lower arm length (m)", 0.5, 10.0, config.L2, 0.1)
+                custom_vane_w = st.slider("Vane width (m)", 0.2, 5.0, config.vane_width, 0.1)
+                custom_vane_h = st.slider("Vane height (m)", 0.5, 10.0, config.vane_height, 0.1)
+
+            with st.expander("⚖️ Masses", expanded=False):
+                custom_m_upper = st.number_input("Upper arm mass (kg)", 0.1, 100.0, config.m_upper_arm, 0.5)
+                custom_m_middle = st.number_input("Middle mass (kg)", 1.0, 200.0, config.m_middle, 1.0)
+                custom_m_lower = st.number_input("Lower arm mass (kg)", 0.1, 100.0, config.m_lower_arm, 0.5)
+                custom_m_tip = st.number_input("Tip mass (kg)", 0.1, 100.0, config.m_tip, 0.5)
+
+            with st.expander("📦 Container", expanded=False):
+                custom_cont_w = st.slider("Container width (m)", 1.0, 15.0, config.container_width, 0.1)
+                custom_cont_h = st.slider("Container height (m)", 1.0, 20.0, config.container_height, 0.5)
+                custom_max_angle = st.slider("Max swing angle (°)", 30, 90, int(np.rad2deg(config.max_swing_angle)), 5)
+
+            # Create custom config
+            from dataclasses import replace
+            config = replace(config,
+                L1=custom_L1,
+                L2=custom_L2,
+                vane_width=custom_vane_w,
+                vane_height=custom_vane_h,
+                m_upper_arm=custom_m_upper,
+                m_middle=custom_m_middle,
+                m_lower_arm=custom_m_lower,
+                m_tip=custom_m_tip,
+                container_width=custom_cont_w,
+                container_height=custom_cont_h,
+                max_swing_angle=np.deg2rad(custom_max_angle)
+            )
+
+            st.success(f"✓ Custom config: L1={custom_L1}m, L2={custom_L2}m, Middle={custom_m_middle}kg")
 
     with col2:
         st.subheader("Wind Speeds")
